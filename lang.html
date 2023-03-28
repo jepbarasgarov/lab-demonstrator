@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Language Selector</title>
+</head>
+<body>
+
+	<h1>Select a language</h1>
+
+	<button id="eng-btn">English</button>
+	<button id="tkm-btn">Turkmen</button>
+	<button id="fra-btn">French</button>
+
+	<audio id="audio-player">
+		<source id="audio-src" src="" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<script>
+		const engBtn = document.getElementById('eng-btn');
+		const tkmBtn = document.getElementById('tkm-btn');
+		const fraBtn = document.getElementById('fra-btn');
+		const audioPlayer = document.getElementById('audio-player');
+		const audioSrc = document.getElementById('audio-src');
+
+		engBtn.addEventListener('click', function() {
+			audioSrc.src = 'eng.mp3';
+			audioPlayer.load();
+			audioPlayer.play();
+		});
+
+		tkmBtn.addEventListener('click', function() {
+			audioSrc.src = 'tkm.mp3';
+			audioPlayer.load();
+			audioPlayer.play();
+		});
+
+		fraBtn.addEventListener('click', function() {
+			audioSrc.src = 'fra.mp3';
+			audioPlayer.load();
+			audioPlayer.play();
+		});
+	</script>
+
+</body>
+</html>
