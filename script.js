@@ -7,8 +7,8 @@ const audioPlayer = document.getElementById('audio-player');
 const audioSrc = document.getElementById('audio-src');
 const progressBar = document.querySelector('.progress-bar');
 const timeDisplay = document.querySelector('.time');
-const playButton = document.querySelector('.play-button');
-const pauseButton = document.querySelector('.pause-button');
+const playButton = document.getElementById('play-button');
+const pauseButton = document.getElementById('pause-button');
 var tmSelected = true;
 var ruSelected = false;
 var engSelected = false;
@@ -19,7 +19,7 @@ tmButton.addEventListener("click", () => {
     buttonColor();
     audioSrc.src = 'tkm.aac';
 	audioPlayer.load();
-	audioPlayer.play();
+    playSong()
     audioPlayer.addEventListener('timeupdate', () => {
         const { currentTime, duration } = audioPlayer;
         const progressPercent = (currentTime / duration) * 100;
@@ -66,6 +66,7 @@ tmButton.addEventListener("click", () => {
     ${'\xa0'.repeat(5)}Hormatly Prezidentimiz! Berilen mümkinçilik bilen peýdalanyp, men öz adymdan we kafedranyň işgärleriniň adyndan Siziň edýän aladalaryňyz üçin uly minnetdarlyk bildirýärin. Biz öz gezegimizde bar yhlasymyzy, güýjümizi, wagtymyzy gaýgyrman ýokary hünärli, bilimli, ynsanperwerli lukmanlary ýetişdirjekdigimizi söz berýäris.`;
     
 });
+ 
 ruButton.addEventListener("click", () => {
     tmSelected = false;
     ruSelected = true;
@@ -73,7 +74,7 @@ ruButton.addEventListener("click", () => {
     buttonColor();
     audioSrc.src = 'ru.mp3';
 	audioPlayer.load();
-	audioPlayer.play();
+	playSong()
     audioPlayer.addEventListener('timeupdate', () => {
         const { currentTime, duration } = audioPlayer;
         const progressPercent = (currentTime / duration) * 100;
@@ -124,7 +125,7 @@ engButton.addEventListener("click", () => {
     buttonColor();
     audioSrc.src = 'engl.mp3';
 	audioPlayer.load();
-	audioPlayer.play();
+	playSong();
 
     audioPlayer.addEventListener('timeupdate', () => {
         const { currentTime, duration } = audioPlayer;
@@ -168,27 +169,38 @@ engButton.addEventListener("click", () => {
     ${'\xa0'.repeat(5)}Dear President! Taking advantage of this opportunity, I would like to introduce myself and on behalf of the staff of the department, I thank you very much for your concern. We devote our time, energy, and dedication to highly skilled, we promise to train educated, humane doctors.`;
 });
 
+playButton.addEventListener("click", () => {
+    playSong()
+})
+
+
+pauseButton.addEventListener("click", () => {
+    pauseSong();
+})
+
+
+
 function buttonColor() {
     if (tmSelected) {
         tmButton.style.backgroundColor = "#F0FAF6";
-        ruButton.style.backgroundColor = "#008631";
-        engButton.style.backgroundColor = "#008631";
+        ruButton.style.backgroundColor = "#1DB954";
+        engButton.style.backgroundColor = "#1DB954";
         tmButton.style.color = "#093624";
         ruButton.style.color="#FFFFFF";
         engButton.style.color="#FFFFFF";
     }
     if (ruSelected) {
         ruButton.style.backgroundColor = "#F0FAF6";
-        tmButton.style.backgroundColor = "#008631";
-        engButton.style.backgroundColor = "#008631";
+        tmButton.style.backgroundColor = "#1DB954";
+        engButton.style.backgroundColor = "#1DB954";
         ruButton.style.color = "#093624";
         tmButton.style.color="#FFFFFF";
         engButton.style.color="#FFFFFF";
     }
     if (engSelected) {
         engButton.style.backgroundColor = "#F0FAF6";
-        ruButton.style.backgroundColor = "#008631";
-        tmButton.style.backgroundColor = "#008631";
+        ruButton.style.backgroundColor = "#1DB954";
+        tmButton.style.backgroundColor = "#1DB954";
         engButton.style.color = "#093624";
         ruButton.style.color="#FFFFFF";
         tmButton.style.color="#FFFFFF";
@@ -199,36 +211,33 @@ function buttonColor() {
 
 
 
-// const playButton = document.querySelector('.play-button');
-// const pauseButton = document.querySelector('.pause-button');
 
+function playSong() {
+	audioPlayer.play();
+	playButton.style.display = 'none';
+	pauseButton.style.display = 'inline-block';
+}
 
-		function playSong() {
-			audio.play();
-			playButton.style.display = 'none';
-			pauseButton.style.display = 'inline-block';
-		}
+function pauseSong() {
+	audioPlayer.pause();
+	playButton.style.display = 'inline-block';
+	pauseButton.style.display = 'none';
+}
 
-		function pauseSong() {
-			audio.pause();
-			playButton.style.display = 'inline-block';
-			pauseButton.style.display = 'none';
-		}
-
-		function setProgress(e) {
-			const width = e.target.clientWidth;
-			const clickX = e.offsetX;
-			const duration = audio.duration;
-			audio.currentTime = (clickX / width) * duration;
-		}
+		// function setProgress(e) {
+		// 	const width = e.target.clientWidth;
+		// 	const clickX = e.offsetX;
+		// 	const duration = audio.duration;
+		// 	audio.currentTime = (clickX / width) * duration;
+		// }
 
 		
-		function formatTime(time) {
-			const minutes = Math.floor(time / 60);
-			let seconds = Math.floor(time % 60);
-			if (seconds < 10) {
-				seconds = `0${seconds}`;
-			}
-			return `${minutes}:${seconds}`;
-		}
+function formatTime(time) {
+	const minutes = Math.floor(time / 60);
+	let seconds = Math.floor(time % 60);
+	if (seconds < 10) {
+		seconds = `0${seconds}`;
+	}
+	return `${minutes}:${seconds}`;
+}
 
