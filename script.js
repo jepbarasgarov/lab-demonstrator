@@ -186,24 +186,24 @@ function buttonColor() {
         ruButton.style.backgroundColor = "#1DB954";
         engButton.style.backgroundColor = "#1DB954";
         tmButton.style.color = "#093624";
-        ruButton.style.color="#FFFFFF";
-        engButton.style.color="#FFFFFF";
+        ruButton.style.color="#191414";
+        engButton.style.color="#191414";
     }
     if (ruSelected) {
         ruButton.style.backgroundColor = "#F0FAF6";
         tmButton.style.backgroundColor = "#1DB954";
         engButton.style.backgroundColor = "#1DB954";
         ruButton.style.color = "#093624";
-        tmButton.style.color="#FFFFFF";
-        engButton.style.color="#FFFFFF";
+        tmButton.style.color="#191414";
+        engButton.style.color="#191414";
     }
     if (engSelected) {
         engButton.style.backgroundColor = "#F0FAF6";
         ruButton.style.backgroundColor = "#1DB954";
         tmButton.style.backgroundColor = "#1DB954";
         engButton.style.color = "#093624";
-        ruButton.style.color="#FFFFFF";
-        tmButton.style.color="#FFFFFF";
+        ruButton.style.color="#191414";
+        tmButton.style.color="#191414";
     }
 
 }
