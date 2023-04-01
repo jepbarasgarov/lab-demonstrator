@@ -1,0 +1,162 @@
+@font-face {
+    font-family: Playfair Display;
+    src: url(./static/PlayfairDisplay-Regular.ttf);
+}
+@font-face {
+    font-family: Playfair Bold;
+    src: url(./static/PlayfairDisplay-Bold.ttf);
+}
+body{
+    background-color: #008631;
+    padding: 0;
+    margin: 0;
+    font-family: Playfair Display;
+}
+#header {
+    display: grid;
+    position: fixed;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #F0FAF6;
+    z-index: 1;
+}
+#header h1{
+    align-self: center;
+    justify-self: start;
+    padding-left: 20px;
+}
+#header div{
+    align-self: center;
+    justify-self: end;
+    padding-right: 20px;
+}
+#header div button{
+    font-family: Playfair Display;
+    font-size: 16px;
+}
+#content {
+    top: 80px;
+    position: relative;
+    display: grid;
+    width: 80%;
+    margin: 50px auto;
+    padding-bottom: 70px;
+}
+#content img {
+    align-self: start;
+    justify-self: center;
+}
+#content p {
+    color: #FFFFFF;
+    align-self: start;
+    text-align: justify;
+}
+button {
+    border-radius: 30px;
+    border: 0.5px solid #008631;
+    background-color: #008631;
+    color: #FFFFFF;
+    margin: 3px;
+    padding: 3px 10px;
+}
+button:hover {
+    background-color: #FFFFFF;
+    color: #008631;
+}
+footer {
+    position: fixed;
+    display: inline;
+    width: 100%;
+    background: #F0FAF6;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+}
+		
+container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+controls {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.progress {
+    height: 5px;
+	background-color: #CCC;
+	flex: 1;
+	margin-right: 20px;
+	position: relative;
+	cursor: pointer;
+		}
+		.progress-bar {
+			height: 100%;
+			background-color: #1DB954;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.play-button, .pause-button {
+			width: 50px;
+			height: 50px;
+			background-color: #1DB954;
+			border-radius: 50%;
+			border: none;
+			color: #FFF;
+			font-size: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+		.play-button:focus, .pause-button:focus {
+			outline: none;
+		}
+		.play-button:hover, .pause-button:hover {
+			background-color: #1ED760;
+		}
+		.footer {
+			background-color: #FFF;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 10px 20px;
+			box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.footer .song-info {
+			display: flex;
+			align-items: center;
+		}
+		.footer .song-info img {
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+		}
+		.footer .song-info h3 {
+			margin: 0;
+			font-size: 16px;
+			line-height: 1.2;
+		}
+		.footer .progress {
+			flex: 1;
+			margin-right: 10px;
+		}
+		.footer .progress-bar {
+			height: 5px;
+			background-color: #1DB954;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.footer .time {
+			font-size: 16px;
+			color: #666;
+		}

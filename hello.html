@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Music Player</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #F5F5F5;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.controls {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		.progress {
+			height: 5px;
+			background-color: #CCC;
+			flex: 1;
+			margin-right: 10px;
+			position: relative;
+			cursor: pointer;
+		}
+		.progress-bar {
+			height: 100%;
+			background-color: #1DB954;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.play-button, .pause-button {
+			width: 50px;
+			height: 50px;
+			background-color: #1DB954;
+			border-radius: 50%;
+			border: none;
+			color: #FFF;
+			font-size: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+		.play-button:focus, .pause-button:focus {
+			outline: none;
+		}
+		.play-button:hover, .pause-button:hover {
+			background-color: #1ED760;
+		}
+		.footer {
+			background-color: #FFF;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 10px 20px;
+			box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.footer .song-info {
+			display: flex;
+			align-items: center;
+		}
+		.footer .song-info img {
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+		}
+		.footer .song-info h3 {
+			margin: 0;
+			font-size: 16px;
+			line-height: 1.2;
+		}
+		.footer .progress {
+			flex: 1;
+			margin-right: 10px;
+		}
+		.footer .progress-bar {
+			height: 5px;
+			background-color: #1DB954;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.footer .time {
+			font-size: 16px;
+			color: #666;
+		}
+	</style>
+</head>
+<body>
+	<audio id="my-audio">
+		<source src="tkm.aac" type="audio/mpeg">
+	</audio>
+	<div class="container">
+		<div class="controls">
+			<button class="play-button" onclick="playSong()">&#9658;</button>
+			<button class="pause-button" onclick="pauseSong()">&#10074;&#10074;</button>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="progress" onclick="setProgress(event)">
+            <div class="progress-bar"></div>
+        </div>
+		<div class="time">0:00 / 3:30</div>
+	</div>
+	<script>
+		const audio = document.getElementById('my-audio');
+		const playButton = document.querySelector('.play-button');
+		const pauseButton = document.querySelector('.pause-button');
+		const progressBar = document.querySelector('.progress-bar');
+		const timeDisplay = document.querySelector('.time');
+
+		function playSong() {
+			audio.play();
+			playButton.style.display = 'none';
+			pauseButton.style.display = 'inline-block';
+		}
+
+		function pauseSong() {
+			audio.pause();
+			playButton.style.display = 'inline-block';
+			pauseButton.style.display = 'none';
+		}
+
+		function setProgress(e) {
+			const width = e.target.clientWidth;
+			const clickX = e.offsetX;
+			const duration = audio.duration;
+
+          
+            console.log(width)
+
+
+
+			audio.currentTime = (clickX / width) * duration;
+		}
+
+		audio.addEventListener('timeupdate', () => {
+			const { currentTime, duration } = audio;
+			const progressPercent = (currentTime / duration) * 100;
+			progressBar.style.width = `${progressPercent}%`;
+
+			const currentTimeFormatted = formatTime(currentTime);
+			const durationFormatted = formatTime(duration);
+			timeDisplay.textContent = `${currentTimeFormatted} / ${durationFormatted}`;
+		});
+
+		function formatTime(time) {
+			const minutes = Math.floor(time / 60);
+			let seconds = Math.floor(time % 60);
+			if (seconds < 10) {
+				seconds = `0${seconds}`;
+			}
+			return `${minutes}:${seconds}`;
+		}
+	</script>
+</body>
+</html>
+
+
+
